@@ -78,6 +78,60 @@ router.get('/getMenu/:taste', async (req, res)=>{
 
 
 
+router.put('/updateMenu/:id', async (req, res)=>{
+    try {
+        const id = req.params.id;
+        const updatedData = req.body;
+        const responce = await Menu.findByIdAndUpdate(id, updatedData, {
+            new:true,
+            runValidators:true
+        })
+
+
+        if(!responce){
+            res.status(404).json({error:"Menu not found"})
+        }
+
+
+        console.log("Menu updated ");
+        
+        res.status(200).json(responce)
+        
+
+
+
+        
+    } catch (error) {
+        console.log("Error while updating menu", error);
+        res.status(500).send(`Menu updating error`)
+    }
+})
+
+
+
+
+
+router.delete('/deleteMenu/:id', async (req, res)=>{
+    try {
+
+        const id= req.params.id;
+        const responce = await Menu.findByIdAndDelete(id);
+
+          if(!responce){
+            res.status(404).json({error:"Menu not found"})
+        }
+
+
+        console.log("Menu deleted ");
+        
+        res.status(200).json({message: "Menu deleted" })
+        
+    } catch (error) {
+        console.log("Error while deleting menu", error);
+        res.status(500).send(`Menu deleting error`)
+    }
+})
+
 
 
 
