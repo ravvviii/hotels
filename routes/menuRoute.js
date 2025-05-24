@@ -1,0 +1,84 @@
+const express = require('express')
+const router = express.Router();
+const Menu = require('../models/menu');
+
+
+
+
+
+
+
+// Get Menu
+
+router.get("/getMenu", async(req, res)=>{
+    try {
+
+        const data = await Menu.find();
+        console.log(`Menu details fetched ✅ `);
+        res.status(200).json(data)
+        
+    } catch (error) {
+        console.log("Error while fetching menu", error);
+        res.status(500).send(`Menu fetching error`)
+    }
+})
+
+
+ 
+
+// Post Menu
+
+
+router.post("/addMenu", async(req, res)=>{
+    try {
+        const data = req.body;
+        const menuItem = new Menu(data)
+
+        const responce = await menuItem.save();
+        console.log(`Menu details saved `);
+        res.status(200).json(responce)
+        
+
+        
+    } catch (error) {
+        console.log("Error while adding menu", error);
+        res.status(500).send(`Menu saving error`)
+        
+        
+    }
+})
+
+
+
+// Parametarised menu
+
+router.get('/getMenu/:taste', async (req, res)=>{
+    try {
+
+
+
+        const taste = req.params.taste;
+
+        if(taste == "Sweet"||taste == "Sour"||taste == "Spicy"){
+
+        const responce = await Menu.find({taste:taste})
+        res.status(200).json(responce)
+        
+        }
+        else{
+            res.status(404).json({error:"Invalid taste type"})
+        }
+
+
+    } catch (error) {
+        console.log("Error while fetching menu", error);
+        res.status(500).send(`Menu fetching error`)
+    }
+})
+
+
+
+
+
+
+module.exports = router
