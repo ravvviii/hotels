@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const db = require('./db')
 const personRoute = require('./routes/personRoutes')
 const menuRoute = require('./routes/menuRoute')
-
+require('dotenv').config();
 
 // Models
 const Person = require('./models/person')
@@ -28,10 +28,10 @@ app.use('/menu', menuRoute)
 
 
 
+const Port = process.env.PORT ||3000
 
 
-
-app.listen(3000, ()=>{
+app.listen(Port, ()=>{
     console.log(`\nServer is started on localhost: 3000`);
     
 });  
