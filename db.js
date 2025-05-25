@@ -7,11 +7,11 @@ require('dotenv').config();
 
 
 // Localhost use karne ke liye
-// const mongoURL = process.env.LOCAL_DB_URL
+const mongoURL = process.env.LOCAL_DB_URL
 
 
 
-const mongoURL = process.env.ONLINE_DB_URL
+// const mongoURL = process.env.ONLINE_DB_URL
 // setup MongoDB connection
 
 mongoose.connect(mongoURL, {
