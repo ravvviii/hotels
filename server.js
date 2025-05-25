@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const db = require('./db')
 const personRoute = require('./routes/personRoutes')
 const menuRoute = require('./routes/menuRoute')
+const adminRoute = require('./routes/adminRoutes')
 require('dotenv').config();
 
 
@@ -48,6 +49,9 @@ app.post('/', LocalauthMiddleware, (req, res) => {
 app.use('/person', LocalauthMiddleware, personRoute)
 // Import Menu router file
 app.use('/menu', LocalauthMiddleware, menuRoute)
+
+// Admin route
+app.use('/admin', adminRoute)
 
 
 
