@@ -23,7 +23,7 @@ res.status(200).json(responce)
     
    } catch (error) {
     console.log(error);
-    res.status(500).json({error:'Internal Server error'})
+    res.status(500).json({error:'Admin data Saving error'})
     
    }
 })
