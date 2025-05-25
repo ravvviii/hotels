@@ -29,6 +29,17 @@ res.status(200).json(responce)
 })
 
 
+router.get("/", (req, res)=>{
+    try {
+        res.status(200).json({message:"Admin rpute working without authentication"})
+        
+    } catch (error) {
+        res.status(500).json({error:error})
+        
+    }
+})
+
+
 
 
 module.exports = router
