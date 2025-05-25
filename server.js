@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 const LocalauthMiddleware = passport.authenticate('local', { session: false })
 
 
-app.post('/', LocalauthMiddleware, (req, res) => {
+app.get('/', (req, res) => {
     res.send("Welcome to our Hotel !!")
 })
 
